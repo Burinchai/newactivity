@@ -194,7 +194,7 @@ app.patch('/api/update/:id', jsonParser, (req, res) => {
         zipcode
     } = req.body;
 
-    connect.execute('UPDATE user SET fname = ?, lname = ?, section = ?, tel = ?, birthdate = ?, address = ?, district = ?, province = ?, tumbons = ?, zipcode = ? WHERE username = ?',
+    connect.execute('UPDATE stduent SET fname = ?, lname = ?, section = ?, tel = ?, birthdate = ?, address = ?, district = ?, province = ?, tumbons = ?, zipcode = ? WHERE std_ID = ?',
         [fname, lname, section, tel, birthdate, address, district, province, tumbons, zipcode, id],
         (err, result) => {
             if (err) {
@@ -215,10 +215,8 @@ app.patch('/api/update/:id', jsonParser, (req, res) => {
 
 
 app.get('/api/userO', (req, res) => {
-    const {
-        id
-    } = req.query;
-    const query = 'SELECT * FROM user WHERE username = ?';
+    const {id} = req.query;
+    const query = 'SELECT * FROM student WHERE login_ID = ?';
 
     connect.query(query, [id], (err, results) => {
         if (err) {
@@ -375,6 +373,17 @@ app.get('/getManage', (req, res) => {
 
 app.get('/getActivity', (req, res) => {
     connect.query('SELECT * FROM activity ', (err, results) => {
+        if (err) {
+            console.error('Error querying MySQL:', err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+        res.json(results);
+    });
+});
+
+app.get('/getSection', (req, res) => {
+    connect.query('SELECT * FROM section ', (err, results) => {
         if (err) {
             console.error('Error querying MySQL:', err);
             res.status(500).send('Internal Server Error');

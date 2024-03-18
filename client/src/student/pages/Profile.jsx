@@ -20,14 +20,11 @@ const StudentForm = () => {
   const onChangeHandle = (id, selectedValue) => {
     if (id === "province_id") {
       setProvinceValue(selectedValue);
-
     } else if (id === "amphure_id") {
       setDistrictValue(selectedValue);
+    } else if (id === "tambon_id") {
+      setSubdistrictValue(selectedValue);
     }
-    else if (id === "tambon_id") {
-      setTumbonsValue(selectedValue);
-    }
-
   };
 
   const DropdownList = ({
@@ -67,8 +64,7 @@ const StudentForm = () => {
         <select value={selected[id]} onChange={onChangeHandleLocal} className="mt-1 p-2 border w-full rounded-md">
           <option key={selected[id]} value={selected[id]} label={addressValue_PDS} />
   
-          {list &&
-            list.map((item) => (
+          {list && list.map((item,index) => (
               <option
                 key={item.id}
                 value={item.id}
@@ -90,12 +86,12 @@ const StudentForm = () => {
   const [fnameValue, setFnameValue] = useState();
   const [lnameValue, setLnameValue] = useState('');
   const [sectionValue, setSectionValue] = useState('');
-  const [telValue, setTelValue] = useState('');
-  const [birthdateValue, setBirthdateValue] = useState('');
+  const [mobileValue, setMobileValue] = useState('');
+  const [emailValue, setEmailValue] = useState('');
   const [addressValue, setAddressValue] = useState('');
   const [provinceValue, setProvinceValue] = useState('');
   const [districtsValue, setDistrictValue] = useState('');
-  const [tumbonsValue, setTumbonsValue] = useState('');
+  const [subdistrictsValue, setSubdistrictValue] = useState('');
   const [zipcodeValue, setZipcodeValue] = useState('');
 
   const userParams = localStorage.getItem('userParams');
@@ -114,15 +110,15 @@ const StudentForm = () => {
       })
       .then(data => {
         console.log(data)
-        setUsername(data.username)
-        setFnameValue(data.fname);
-        setLnameValue(data.lname);
-        setSectionValue(data.section);
-        setTelValue(data.tel);
-        setBirthdateValue(data.birthdate);
-        setAddressValue(data.address);
+        setUsername(data.login_ID)
+        setFnameValue(data.std_fname);
+        setLnameValue(data.std_lname);
+        setSectionValue(data.sec_ID);
+        setMobileValue(data.std_mobile);
+        setEmailValue(data.std_email);
+        setAddressValue(data.std_address);
+        setSubdistrictValue(data.subdistrict);
         setDistrictValue(data.district);
-        setTumbonsValue(data.tumbons);
         setProvinceValue(data.province);
         setZipcodeValue(data.zipcode);
       })
@@ -168,10 +164,10 @@ const StudentForm = () => {
     setSectionValue(event.target.value);
   }
   const updateTel = (event) => {
-    setTelValue(event.target.value);
+    setMobileValue(event.target.value);
   }
   const updateBirthdate = (event) => {
-    setBirthdateValue(event.target.value);
+    setEmailValue(event.target.value);
   }
   const updateAddress = (event) => {
     setAddressValue(event.target.value);
@@ -191,11 +187,11 @@ const StudentForm = () => {
       fname: fnameValue,
       lname: lnameValue,
       section: sectionValue,
-      tel: telValue,
-      birthdate: birthdateValue,
+      tel: mobileValue,
+      birthdate: emailValue,
       address: addressValue,
       district: districtsValue,
-      tumbons: tumbonsValue,
+      tumbons: subdistrictsValue,
       province: provinceValue,
       zipcode: zipcode,
     };
@@ -239,7 +235,7 @@ const StudentForm = () => {
 
 
 
-  if (!username) {
+  if (!fnameValue) {
     return <div>Loading...</div>;
   }
   return (
@@ -311,7 +307,7 @@ const StudentForm = () => {
             id="tel"
             name="tel"
             onChange={updateTel}
-            value={telValue}
+            value={mobileValue}
             className="mt-1 p-2 border w-full rounded-md" />
         </div>
 
@@ -324,7 +320,7 @@ const StudentForm = () => {
             id="birthdate"
             name="birthdate"
             onChange={updateBirthdate}
-            value={birthdateValue}
+            value={emailValue}
             className="mt-1 p-2 border w-full rounded-md" />
         </div>
 
@@ -378,7 +374,7 @@ const StudentForm = () => {
             child="zip_code"
             childsId={["zip_code"]}
             setChilds={[setZipcode]}
-            addressValue_PDS={tumbonsValue}
+            addressValue_PDS={subdistrictsValue}
           />
         </div>
 

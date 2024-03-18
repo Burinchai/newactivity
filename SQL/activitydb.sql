@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2024 at 04:08 AM
+-- Generation Time: Mar 18, 2024 at 06:49 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -47,9 +47,9 @@ CREATE TABLE `activity` (
 INSERT INTO `activity` (`act_ID`, `act_title`, `act_desc`, `act_dateStart`, `act_dateEnd`, `act_numStd`, `act_location`, `staff_ID`, `act_status`, `act_createAt`) VALUES
 (1, 'dddj', 'fdsa', '2024-03-05', '2024-03-13', 54, 'uyjh', 'lkgj', 1, '2024-03-12 10:33:48'),
 (2, 'Team Building Workshop', 'A workshop to enhance team collaboration and communication skills.', '2024-03-15', '2024-03-16', 30, 'Conference Room A', '1', 1, '2024-03-11 17:00:00'),
-(3, 'Team2 Building Workshop', 'A workshop to enhance team collaboration and communication skills.', '2024-03-15', '2024-03-16', 30, 'Conference Room A', '1', 1, '0000-00-00 00:00:00'),
-(4, 'Team3 Building Workshop', 'A workshop to enhance team collaboration and communication skills.', '2024-03-15', '2024-03-16', 30, 'Conference Room A', '1', 1, '0000-00-00 00:00:00'),
-(5, 'Team4 Building Workshop', 'A workshop to enhance team collaboration and communication skills.', '2024-03-15', '2024-03-16', 30, 'Conference Room A', 'll', 1, '2024-03-12 14:42:51');
+(5, 'Team4 Building Workshop', 'A workshop to enhance team collaboration and communication skills.', '2024-03-15', '2024-03-16', 30, 'Conference Room A', 'll', 1, '2024-03-12 14:42:51'),
+(6, 'Team65 Building Workshop', 'A workshop to enhance team collaboration and communication skills.', '2024-03-15', '2024-03-16', 30, 'Conference Room A', 'll', 1, '2024-03-13 06:23:53'),
+(7, 'fdsa', 'fdsa', '2024-03-09', '2024-03-30', 163, 'jhg', '10', 1, '2024-03-13 06:28:47');
 
 -- --------------------------------------------------------
 
@@ -82,11 +82,20 @@ INSERT INTO `login` (`login_ID`, `username`, `password`, `role`) VALUES
 --
 
 CREATE TABLE `manage` (
-  `man_ID` varchar(3) NOT NULL,
   `man_status` tinyint(1) NOT NULL,
   `std_ID` varchar(9) NOT NULL,
   `act_ID` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `manage`
+--
+
+INSERT INTO `manage` (`man_status`, `std_ID`, `act_ID`) VALUES
+(1, '644230016', '2'),
+(1, '644230016', '1'),
+(1, '644230046', '2'),
+(1, '644230046', '7');
 
 -- --------------------------------------------------------
 
@@ -119,6 +128,13 @@ CREATE TABLE `staff` (
   `zipcode` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`staff_ID`, `login_ID`, `staff_fname`, `staff_lname`, `staff_email`, `staff_mobile`, `staff_address`, `province`, `district`, `subdistrict`, `zipcode`) VALUES
+('11', '46513', 'fds', 'fds', 'fgsd', '1234567890', 'fsda', 'fsda', 'fsda', 'fdsa', '12345');
+
 -- --------------------------------------------------------
 
 --
@@ -141,6 +157,14 @@ CREATE TABLE `student` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`std_ID`, `login_ID`, `std_fname`, `std_lname`, `sec_ID`, `std_email`, `std_mobile`, `std_address`, `province`, `district`, `subdistrict`, `zipcode`) VALUES
+('644230016', '644230016', 'karan', 'khanthong', '01', 'jklhi', 'bijnkm', 'fs', 'jnkm,', 'kjnm,', 'yguhbjnk', '45613'),
+('644230046', '644230046', 'Burinchai', 'Sukon', '1', 'ji', 'ihj', 'hikjn', 'ibhjkn', 'bihjkn', 'bhjn', 'hiujj');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -155,12 +179,6 @@ ALTER TABLE `activity`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`login_ID`);
-
---
--- Indexes for table `manage`
---
-ALTER TABLE `manage`
-  ADD PRIMARY KEY (`man_ID`);
 
 --
 -- Indexes for table `section`
@@ -188,7 +206,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `act_ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `act_ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

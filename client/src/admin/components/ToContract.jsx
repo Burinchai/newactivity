@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 function ToContract() {
     const [data, setData] = useState([]);
     const [students, setStudents] = useState([]);
+    const [activity, setActivity] = useState([]);
     const [actIDCounts, setActIDCounts] = useState({});
 
     useEffect(() => {
@@ -22,6 +23,13 @@ function ToContract() {
                 const studentData = await studentResponse.json();
                 setStudents(studentData);
 
+                const activityResponse = await fetch('http://localhost:3333/getActivity');
+                if (!studentResponse.ok) {
+                    throw new Error('Failed to fetch student data');
+                }
+                const activigtytData = await activityResponse.json();
+                setActivity(activigtytData);
+
                 // Calculate the count of act_ID
                 const counts = manageData.reduce((acc, item) => {
                     acc[item.act_ID] = (acc[item.act_ID] || 0) + 1;
@@ -37,21 +45,19 @@ function ToContract() {
     }, []);
 
     return (
-        <div>
-            <div className="flex" data-theme="dark">
-                <div className="w-1/4 m-4">
-                    <div className="rounded-lg border-teal-400 text-center text-4xl font-bold">
-                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sit, alias officia nostrum veritatis asperiores ipsam repellendus accusamus sed harum velit numquam, deleniti soluta doloremque repudiandae voluptatem optio tempore earum?</h1>
-                    </div>
-                </div>
-                <div className="w-3/4 m-4">
-                    <div className="overflow-x-auto">
-                        {Object.entries(actIDCounts).map(([act_ID, count]) => {
-                            const group = data.filter(item => item.act_ID === act_ID);
-                            return (
-                                <div key={act_ID} className="mb-16">
+        <div data-theme="dark">
+                <div className="overflow-x-auto">
+                    {Object.entries(actIDCounts).map(([act_ID, count]) => {
+                        const group = data.filter(item => item.act_ID === act_ID);
+
+                        return (
+                            
+                            <div key={act_ID} className="mb-16 flex">
+                                <div className="w-1/4 text-center items-center">
                                     <h2>Activity ID: {act_ID}</h2>
-                                    <p>Number of Student: {count}</p>
+                                    <p>Number of Student: {count} / {}</p>
+                                </div>
+                                <div className="w-3/4">
                                     <table className="table">
                                         <thead>
                                             <tr>
@@ -86,16 +92,16 @@ function ToContract() {
                                         </tbody>
                                     </table>
                                 </div>
-                            );
-                        })}
-                        <div className="flex justify-center mt-16">
-                            <button type="submit" className="btn btn-primary">
-                                Submit
-                            </button>
-                        </div>
+                            </div>
+                        );
+                    })}
+                    <div className="flex justify-center mt-16">
+                        <button type="submit" className="btn btn-primary">
+                            Submit
+                        </button>
                     </div>
                 </div>
-            </div>
+
         </div>
     );
 }

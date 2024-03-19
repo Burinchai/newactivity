@@ -394,7 +394,7 @@ app.get('/getSection', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    connection.query('SELECT * FROM login', (error, results, fields) => {
+    connect.query('SELECT * FROM login', (error, results, fields) => {
       if (error) throw error;
       res.json(results);
     });

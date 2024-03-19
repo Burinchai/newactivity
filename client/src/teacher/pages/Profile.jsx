@@ -78,7 +78,6 @@ const StudentForm = () => {
     );
   };
   
-  
   const [username, setUsername] = useState('');
   const [fnameValue, setFnameValue] = useState();
   const [lnameValue, setLnameValue] = useState('');
@@ -96,10 +95,7 @@ const StudentForm = () => {
   useEffect(() => {
     // กำหนด URL ของ API ที่สร้างด้วย Node.js
     const apiUrl = 'http://localhost:3333/api/staff?id=';
-    
-    // ปรับ URL ตามที่คุณใช้
 
-    // ทำ HTTP request ด้วย fetch 
     fetch(apiUrl + loginID)
       .then(response => {
         if (!response.ok) {

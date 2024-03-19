@@ -64,7 +64,7 @@ const StudentForm = () => {
         <select value={selected[id]} onChange={onChangeHandleLocal} className="mt-1 p-2 border w-full rounded-md">
           <option key={selected[id]} value={selected[id]} label={addressValue_PDS} />
   
-          {list && list.map((item,index) => (
+          {list && list.map((item) => (
               <option
                 key={item.id}
                 value={item.id}
@@ -79,9 +79,6 @@ const StudentForm = () => {
   };
   
   
-
-
-
   const [username, setUsername] = useState('');
   const [fnameValue, setFnameValue] = useState();
   const [lnameValue, setLnameValue] = useState('');
@@ -138,6 +135,10 @@ const StudentForm = () => {
 
           );
 
+          const idProvince = sortedProvinces.map(province => [province.id, province.name_th]);
+
+          console.log(idProvince);
+
 
           
 
@@ -163,10 +164,10 @@ const StudentForm = () => {
   const updateSection = (event) => {
     setSectionValue(event.target.value);
   }
-  const updateTel = (event) => {
+  const updateMobile = (event) => {
     setMobileValue(event.target.value);
   }
-  const updateBirthdate = (event) => {
+  const updateEmail = (event) => {
     setEmailValue(event.target.value);
   }
   const updateAddress = (event) => {
@@ -187,12 +188,12 @@ const StudentForm = () => {
       fname: fnameValue,
       lname: lnameValue,
       section: sectionValue,
-      tel: mobileValue,
-      birthdate: emailValue,
+      mobile: mobileValue,
+      email: emailValue,
       address: addressValue,
-      district: districtsValue,
-      tumbons: subdistrictsValue,
       province: provinceValue,
+      district: districtsValue,
+      subdistrict: subdistrictsValue,
       zipcode: zipcode,
     };
   
@@ -233,9 +234,7 @@ const StudentForm = () => {
   };
   
 
-
-
-  if (!fnameValue) {
+  if (!username) {
     return <div>Loading...</div>;
   }
   return (
@@ -306,20 +305,20 @@ const StudentForm = () => {
             type="tel"
             id="tel"
             name="tel"
-            onChange={updateTel}
+            onChange={updateMobile}
             value={mobileValue}
             className="mt-1 p-2 border w-full rounded-md" />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="birthdate" className="block text-sm font-medium text-gray-600">
-            วันเกิด
+          <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+            อีเมลล์
           </label>
           <input
-            type="date"
-            id="birthdate"
-            name="birthdate"
-            onChange={updateBirthdate}
+            type="email"
+            id="email"
+            name="email"
+            onChange={updateEmail}
             value={emailValue}
             className="mt-1 p-2 border w-full rounded-md" />
         </div>
@@ -391,11 +390,9 @@ const StudentForm = () => {
             value={zipcode ?? zipcodeValue}
             className="mt-1 p-2 border w-full rounded-md" />
         </div>
-
-        <br />
-
-        <div className="flex justify-end">
-          <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600" onClick={updateClick}>
+        
+        <div className="flex justify-end items-center">
+          <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-1/8 h-1/2" onClick={updateClick}>
             แก้ไข
           </button>
         </div>

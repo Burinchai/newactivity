@@ -185,17 +185,17 @@ app.patch('/api/update/:id', jsonParser, (req, res) => {
         fname,
         lname,
         section,
-        tel,
-        birthdate,
+        email,
+        mobile,
         address,
-        district,
         province,
-        tumbons,
+        district,
+        subdistrict,
         zipcode
     } = req.body;
 
-    connect.execute('UPDATE stduent SET fname = ?, lname = ?, section = ?, tel = ?, birthdate = ?, address = ?, district = ?, province = ?, tumbons = ?, zipcode = ? WHERE std_ID = ?',
-        [fname, lname, section, tel, birthdate, address, district, province, tumbons, zipcode, id],
+    connect.execute('UPDATE `student` SET `std_fname`= ?,`std_lname`= ?,`sec_ID`= ?,`std_email`= ?,`std_mobile`= ?,`std_address`= ?,`province`= ?,`district`= ?,`subdistrict`= ?,`zipcode`= ? WHERE std_ID = ?',
+        [fname, lname, section, email, mobile, address, province, district, subdistrict, zipcode, id],
         (err, result) => {
             if (err) {
                 console.error('Error querying MySQL:', err);

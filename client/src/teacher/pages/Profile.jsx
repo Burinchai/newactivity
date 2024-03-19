@@ -82,7 +82,7 @@ const StudentForm = () => {
   const [username, setUsername] = useState('');
   const [fnameValue, setFnameValue] = useState();
   const [lnameValue, setLnameValue] = useState('');
-  const [sectionValue, setSectionValue] = useState('');
+  const [staffIDValue, setstaffID] = useState('');
   const [mobileValue, setMobileValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
   const [addressValue, setAddressValue] = useState('');
@@ -91,14 +91,16 @@ const StudentForm = () => {
   const [subdistrictsValue, setSubdistrictValue] = useState('');
   const [zipcodeValue, setZipcodeValue] = useState('');
 
-  const userParams = localStorage.getItem('userParams');
+  const loginID = localStorage.getItem('login_ID');
 
   useEffect(() => {
     // กำหนด URL ของ API ที่สร้างด้วย Node.js
-    const apiUrl = 'http://localhost:3333/api/staff?id=';  // ปรับ URL ตามที่คุณใช้
+    const apiUrl = 'http://localhost:3333/api/staff?id=';
+    
+    // ปรับ URL ตามที่คุณใช้
 
     // ทำ HTTP request ด้วย fetch 
-    fetch(apiUrl + userParams)
+    fetch(apiUrl + loginID)
       .then(response => {
         if (!response.ok) {
           throw new Error('เกิดข้อผิดพลาดในการดึงข้อมูล');
@@ -108,9 +110,9 @@ const StudentForm = () => {
       .then(data => {
         console.log(data)
         setUsername(data.login_ID)
+        setstaffID(data.staff_ID)
         setFnameValue(data.staff_fname);
         setLnameValue(data.staff_lname);
-        setSectionValue(data.sec_ID);
         setMobileValue(data.staff_mobile);
         setEmailValue(data.staff_email);
         setAddressValue(data.staff_address);
@@ -147,11 +149,12 @@ const StudentForm = () => {
         });
 
 
+        console.log(loginID)
 
 
       
 
-  }, [userParams]);
+  }, [loginID]);
 
 
 
@@ -160,9 +163,6 @@ const StudentForm = () => {
   }
   const updateLname = (event) => {
     setLnameValue(event.target.value);
-  }
-  const updateSection = (event) => {
-    setSectionValue(event.target.value);
   }
   const updateMobile = (event) => {
     setMobileValue(event.target.value);
@@ -187,7 +187,6 @@ const StudentForm = () => {
     const dataJson = {
       fname: fnameValue,
       lname: lnameValue,
-      section: sectionValue,
       mobile: mobileValue,
       email: emailValue,
       address: addressValue,
@@ -197,7 +196,7 @@ const StudentForm = () => {
       zipcode: zipcode,
     };
   
-    fetch('http://localhost:3333/api/update/' + userParams, {
+    fetch('http://localhost:3333/api/updateStaff/' + staffIDValue, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -213,12 +212,11 @@ const StudentForm = () => {
    .then(result => {
       console.log(result);
       Swal.fire({
-        title: 'Update Successfully',
+        title: 'แก้ไขประวัติส่วนตัวเสร็จสิ้น',
         icon: 'success',
-        confirmButtonText: 'OK',
       });
       setTimeout(() => {
-        window.location = '/activity/dashboard';
+        window.location = '/teacher/calendar';
       }, 1500);
    })
    .catch(error => {
@@ -247,29 +245,17 @@ const StudentForm = () => {
 
         <div className="mb-4">
           <label htmlFor="studentId" className="block text-sm font-medium text-gray-600">
-            รหัสนักศึกษา
+            รหัสประจำตัวอาจารย์
           </label>
           <input
             type="text"
             id="username"
             name="username"
-            value={username}
+            value={staffIDValue}
             readOnly
             className="mt-1 p-2 border w-full rounded-md" />
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="classGroup" className="block text-sm font-medium text-gray-600">
-            หมู่เรียน
-          </label>
-          <input
-            type="text"
-            id="section"
-            name="section"
-            onChange={updateSection}
-            value={sectionValue}
-            className="mt-1 p-2 border w-full rounded-md" />
-        </div>
 
         <div className="mb-4">
           <label htmlFor="firstName" className="block text-sm font-medium text-gray-600">
@@ -391,12 +377,12 @@ const StudentForm = () => {
             className="mt-1 p-2 border w-full rounded-md" />
         </div>
         
-        <div className="flex justify-end items-center">
-          <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-1/8 h-1/2" onClick={updateClick}>
+      </form>
+        <div className="flex justify-center items-center mb-4">
+          <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-1/8 " onClick={updateClick}>
             แก้ไข
           </button>
         </div>
-      </form>
     </div>
 
   );

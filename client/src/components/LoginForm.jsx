@@ -18,9 +18,11 @@ export default function SignInSide() {
         })
             .then(response => response.json())
             .then(data => {
+              console.log(data)
                 if (data.status === 'ok') {
                     // alert('login success');
                     localStorage.setItem('token', data.token);
+                    localStorage.setItem('login_ID', data.login_ID)
 
                     // Check user role and redirect accordingly
                     if (data.role === 'admin') {
@@ -28,7 +30,6 @@ export default function SignInSide() {
                     } else if (data.role === 'teacher') {
                         window.location = '/teacher/calendar'; // Redirect to teacher dashboard
                     } else {
-                        localStorage.setItem('userParams', jsonData.username)
                         window.location = '/activity/calendar'; // Redirect to user dashboard
                     }
                 } else {

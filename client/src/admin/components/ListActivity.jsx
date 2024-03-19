@@ -119,10 +119,6 @@ const ProductTable = () => {
             {/* ... ส่วนหัวตาราง ... */}
             <thead className=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 flex w-full">
               <tr className="flex w-full">
-
-                <th scope="col" className="px-6 py-3 w-1/12">
-                  ลำดับ
-                </th>
                 <th scope="col" className="px-6 py-3 w-3/12 text-left">
                   รหัสกิจกรรม
                 </th>
@@ -151,12 +147,8 @@ const ProductTable = () => {
               </tr>
             </thead>
             <tbody className="text-slate-600 flex flex-col w-full overflow-y-scroll items-center justify-between">
-              {visibleItems.map((item, index) => (
+              {visibleItems.map((item) => (
                 <tr key={item.act_ID} className="border-b-2 flex w-full ">
-              
-                  <td scope="col" className="px-6 py-3 w-1/12">
-                   {index + 1}
-                  </td>
                   <td scope="col" className="px-6 py-3 w-3/12 text-left">
                     {item.act_ID}
                   </td>
@@ -176,7 +168,7 @@ const ProductTable = () => {
                     {item.act_dateEnd.slice(0, 10)}
                   </td> }
                   <td scope="col" className="px-6 py-3 w-3/12 text-left">
-                  {item.act_status}
+                  {item.act_status === 1 ? "เปิด" : "ปิด"}
                   </td>
                   <td scope="col" className="px-6 py-3 w-3/12 text-left hover:text-green-500">
                       <a href="#">เพิ่มเติม</a>

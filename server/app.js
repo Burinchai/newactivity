@@ -241,12 +241,39 @@ app.get('/api/userO', (req, res) => {
     console.query
 });
 
+app.get('/api/staff', (req, res) => {
+    const {id} = req.query;
+    const query = 'SELECT * FROM staff WHERE login_ID = ?';
+
+    connect.query(query, [id], (err, results) => {
+        if (err) {
+            console.error('Error fetching user data:', err);
+            res.status(500).json({
+                error: 'Internal Server Error'
+            });
+            return;
+        }
+
+        if (results.length > 0) {
+            console.log('User data:', results[0]);
+            res.json(results[0]);
+        } else {
+            console.log('User not found');
+            res.status(404).json({
+                message: 'User not found'
+            });
+        }
+    });
+
+    console.query
+});
+
 //ส่วนของกิจกรรม
 
 app.post('/activity', jsonParser, function (req, res) {
     connect.query(
-        'INSERT INTO activity(`act_title`, `act_desc`, `act_dateStart`, `act_dateEnd`, `act_numStd`, `act_location`, `staff_ID`, `act_status`, `act_createAt`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [req.body.act_title, req.body.act_desc, req.body.act_dateStart, req.body.act_dateEnd, req.body.act_numStd, req.body.act_location, req.body.staff_ID, 1, new Date()],
+        'INSERT INTO activity(`act_title`, `act_desc`, `act_dateStart`, `act_dateEnd`, `act_numStd`, `act_location`, `staff_ID`, `act_status`, `act_createAt`) VALUES (?, ?, ?, ?, ?, 1, ?, ?, ?)',
+        [req.body.act_title, req.body.act_desc, req.body.act_dateStart, req.body.act_dateEnd, req.body.act_numStd, req.body.act_location, req.body.staff_ID,1 , new Date()],
         function (err, results) {
             if (err) {
                 console.error('Error inserting into database:', err);
@@ -394,7 +421,7 @@ app.get('/getSection', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    connect.query('SELECT * FROM login', (error, results, fields) => {
+    connect.query('SELECT * FROM login ', (error, results, fields) => {
       if (error) throw error;
       res.json(results);
     });

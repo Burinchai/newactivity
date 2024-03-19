@@ -126,41 +126,36 @@ const ProductTable = () => {
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 flex w-full">
               <tr className="flex w-full">
-                <th scope="col" className="px-6 py-3 w-2/12">
-                  Student ID
+                <th scope="col" className="px-6 py-3 w-4/12">
+                  รหัสนักศึกษา
                 </th>
                 <th scope="col" className="px-6 py-3 w-2/12">
-                  First Name
+                  ชื่อ
                 </th>
                 <th scope="col" className="px-6 py-3 w-2/12">
-                  Last Name
+                  นามสกุล
                 </th>
                 <th scope="col" className="px-6 py-3 w-2/12">
-                  Section
+                  หมู่เรียน
                 </th>
                 <th scope="col" className="px-6 py-3 w-2/12">
-                  Detail
+                  รายละเอียด
                 </th>
-                {/* <th scope="col" className="px-6 py-3 w-2/12">
-                  Email
-                </th>
-                <th scope="col" className="px-6 py-3 w-2/12">
-                  Mobile
-                </th>
-                <th scope="col" className="px-6 py-3 w-2/12">
-                  Address
-                </th> */}
-                {/* Add more headers as needed */}
+              
               </tr>
             </thead>
             <tbody className="text-slate-600 flex flex-col w-full overflow-y-scroll items-center justify-between">
               {visibleItems.map((item, index) => (
                 <tr key={index} className="border-b-2 flex w-full items-center">
-                  <td scope="col" className="px-6 py-3 w-2/12">{item.std_ID}</td>
+                  <td scope="col" className="px-6 py-3 w-4/12">{item.std_ID}</td>
                   <td scope="col" className="px-6 py-3 w-2/12">{item.std_fname}</td>
                   <td scope="col" className="px-6 py-3 w-2/12">{item.std_lname}</td>
                   <td scope="col" className="px-6 py-3 w-2/12">{item.sec_name}</td>
-                  <td scope="col" className="px-6 py-3 w-2/12">more</td>
+                  <td scope="col" className="px-6 py-3 w-2/12">
+                    <button className=" hover:text-teal-700 px-2 py-1  ">
+                      เพิ่มเติม
+                    </button>
+                  </td>
                   {/* <td scope="col" className="px-6 py-3 w-2/12">{item.std_email}</td>
                   <td scope="col" className="px-6 py-3 w-2/12">{item.std_mobile}</td>
                   <td scope="col" className="px-6 py-3 w-2/12">

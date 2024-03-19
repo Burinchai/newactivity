@@ -26,8 +26,7 @@
     "react-router": "^6.22.0",
     "react-router-dom": "^6.21.1",
     "sweetalert2": "^11.10.2",
-    "sweetalert2-react-content": "^5.0.7",
-    "web3": "^4.4.0"
+    "sweetalert2-react-content": "^5.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

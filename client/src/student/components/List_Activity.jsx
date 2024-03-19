@@ -48,6 +48,7 @@ const ProductTable = () => {
 
                     <div className="text-lg font-bold mb-2">ประวัติการทำกิจกรรม</div>
                     <div className="flex justify-between">
+
                         <div className="pb-4 items-center">
                             <label htmlFor="table-search" className="sr-only">
                                 Search
@@ -89,7 +90,7 @@ const ProductTable = () => {
                                     setItemsPerPage(+e.target.value);
                                     setCurrentPage(0);
                                 }}
-                                className="block ps-6 pt-1 pb-1 text-sm text-gray-900 border  rounded-md w-20 bg-orange-500-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-black-400 dark:text-gray-950 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                className="block ps-6 pt-1 pb-1 text-sm   rounded-md w-20 bg-gray-200   "
                             >
                                 <option value={15}>15</option>
                                 <option value={25}>25</option>
@@ -124,7 +125,7 @@ const ProductTable = () => {
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className="text-slate-600 flex flex-col w-full overflow-y-scroll items-center justify-between" style={{ height: '50vh' }}>
+                        <tbody className="text-slate-600 flex flex-col w-full overflow-y-scroll items-center justify-between" >
                             {visibleItems.map((item) => (
                                 <tr key={item.act_ID} className="border-b-2 flex w-full ">
                                  

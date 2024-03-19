@@ -43,6 +43,11 @@ const NavBar = () => {
                                 className={getItemClass('listStudent')}>รายชื่อนักศึกษา</li>
                         </Link>
 
+                        <Link to='/teacher/dashboard'>
+                            <li onClick={() => handleItemClick('listStudent')}
+                                className={getItemClass('listStudent')}>กิจกรรม</li>
+                        </Link>
+
                         <Link to='/teacher/profile'>
                             <li onClick={() => handleItemClick('Profile')}
                                 className={getItemClass('Profile')}>ประวัติส่วนตัว</li>

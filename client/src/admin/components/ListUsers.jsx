@@ -201,7 +201,7 @@ const ProductTable = () => {
                       {item.sec_name}
                     </td>
                     <td scope="col" className="px-6 py-3 w-2/12">
-                      {item.role}
+                      student
                     </td>
                     <td scope="col" className="ml-10  py-3 w-2/12 text-center">
                       <button className="bg-cyan-400 hover:bg-cyan-500 px-2 py-1 text-white rounded">

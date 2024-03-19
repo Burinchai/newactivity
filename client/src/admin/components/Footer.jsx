@@ -3,7 +3,7 @@
 function Footer() {
   return (
     <footer className="bg-gray-800 text-white p-4 text-center mt-10  w-screen">
-      <p>&copy; 2023 Create by PONDNP31.</p>
+      <p>&copy; 2023 Create by student IT @NPRU.</p>
     </footer>
   );
 }

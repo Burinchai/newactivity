@@ -57,7 +57,7 @@ function ToContract() {
             <div className="overflow-x-auto">
                 {Object.entries(actIDCounts).map(([act_ID, count]) => {
                     const group = data.filter(item => item.act_ID === act_ID);
-                    const activityItem = activity.find(act => act.act_ID === act_ID);
+                    const activityItem = activity.find(act => act.act_ID == act_ID);
 
                     return (
                         <div key={act_ID} className="mb-16 flex">
@@ -82,7 +82,7 @@ function ToContract() {
                                     <tbody>
                                         {group.map(item => {
                                             const student = students.find(student => student.std_ID === item.std_ID);
-                                            const secName = section.find(sec => sec.sec_ID === student.sec_ID)?.sec_name;
+                                            const secName = section.find(sec => sec.sec_ID == student.sec_ID)?.sec_name;
                                             return (
                                                 <tr key={item.man_ID}>
                                                     <td>

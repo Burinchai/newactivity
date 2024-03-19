@@ -58,6 +58,7 @@ const AppRouter = () => (
         <Route path="liststudent" element={<ListStudent />} />
         <Route path="profile" element={<ProfileT />} />
         <Route path="pro" element={<Pro />} />
+        <Route path="dashboard" element={<DashUser />} />
       </Route>
     </Routes>
   </Router>

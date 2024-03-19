@@ -11,8 +11,8 @@ function Wallet() {
                 {/* <ConnectWeb3 /> */}
                 {/* <AddActivity /> */}
                 {/* <AddActyivity /> */}
-                {/* {<ToContract />} */}
-                {<Bt />}
+                {<ToContract />}
+                {/* {<Bt />} */}
         </div>
 
     )

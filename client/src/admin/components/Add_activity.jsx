@@ -73,8 +73,8 @@ function Add_Activity({ closeModal }) {
 
 
   return (
-    <div className="max-w-md mx-auto my-10 p-6  rounded-md">
-      <div></div>
+    <div className="max-w-md mx-auto my-10 p-6  rounded-md ">
+      
       <div className="cursor-pointer justify-between flex" onClick={closeModal}>
         <div></div>
         <CloseIcon />
